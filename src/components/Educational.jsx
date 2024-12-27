@@ -22,15 +22,24 @@ export default function Educational() {
     }));
   }
 
+  function titleCase(string) {
+    let titleStrings = {
+      schoolName: 'School Name: ',
+      fieldOfStudy: 'Field of Study: ',
+      graduationYear: 'Graduation Year: ',
+    };
+
+    return titleStrings[string];
+  }
+
   return (
     <div>
       <h2>Educational Information</h2>
       <div className="educational__details__container">
-      {Object.keys(formData).map((field) => (
+        {Object.keys(formData).map((field) => (
           <div className="educational__item__container" key={field}>
             <p className={`educational__${field}`}>
-              <strong>{`${field.charAt(0).toUpperCase() + field.slice(1)}:`}</strong>{' '}
-              {formData[field]}
+              <strong>{titleCase(field)}</strong> {formData[field]}
             </p>
             <input
               type="text"

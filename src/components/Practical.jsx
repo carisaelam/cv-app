@@ -27,6 +27,18 @@ export default function Practical() {
     }));
   }
 
+  function titleCase(string) {
+    let titleStrings = {
+      companyName: 'Company Name: ',
+      positionTitle: 'Position Title: ',
+      mainResponsibilities: 'Main Responsibilities: ',
+      startDate: 'Start Date: ',
+      endDate: 'End Date: ',
+    };
+
+    return titleStrings[string];
+  }
+
   return (
     <div>
       <h2>Practical Information</h2>
@@ -34,8 +46,7 @@ export default function Practical() {
         {Object.keys(formData).map((field) => (
           <div className="practical__item__container" key={field}>
             <p className={`practical__${field}`}>
-              <strong>{`${field.charAt(0).toUpperCase() + field.slice(1)}:`}</strong>{' '}
-              {formData[field]}
+              <strong>{titleCase(field)}</strong> {formData[field]}
             </p>
             <input
               type={
