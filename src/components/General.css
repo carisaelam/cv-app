@@ -1,3 +1,7 @@
+h2 {
+  text-align: left;
+}
+
 .general__details__container {
   background-color: rgb(255, 255, 255);
   display: flex;
@@ -25,4 +29,9 @@
 .general__item__container button {
   font-size: 0.75rem;
   margin-left: auto;
+}
+
+.general__input {
+  position: fixed;
+  margin: 0 auto;
 }
