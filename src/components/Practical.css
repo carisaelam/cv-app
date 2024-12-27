@@ -1,0 +1,37 @@
+h2 {
+  text-align: left;
+}
+
+.practical__details__container {
+  background-color: rgb(255, 255, 255);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: start;
+  padding: 1rem;
+  gap: 0.5rem;
+  border-radius: 0.5rem;
+  max-width: 30rem;
+}
+
+.practical__details__container p {
+  margin: 0;
+}
+
+.practical__item__container {
+  gap: 3rem;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-align: left;
+}
+
+.practical__item__container button {
+  font-size: 0.75rem;
+  margin-left: auto;
+}
+
+.practical__input {
+  position: absolute;
+}
