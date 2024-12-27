@@ -1,5 +1,5 @@
 import './App.css';
-import General from './components/General';
+import General from './components/general';
 import Educational from './components/Educational';
 import Practical from './components/Practical';
 
