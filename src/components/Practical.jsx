@@ -94,7 +94,7 @@ export default function Practical() {
                 mainResponsibilities: e.target.value,
               }))
             }
-            hidden={!isVisible['phone']}
+            hidden={!isVisible['mainResponsibilities']}
           />
           <Button field={'mainResponsibilities'} />
         </div>
