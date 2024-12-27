@@ -16,85 +16,46 @@ export default function Educational() {
   });
 
   function handleEditButtonClick(field) {
-    console.log('running handleEditButtonClick, field', field);
     setIsVisible((prevState) => ({
       ...prevState,
       [field]: !prevState[field],
     }));
   }
 
-  function Button({ field }) {
-    return (
-      <button
-        onClick={() => handleEditButtonClick(field)}
-        style={{
-          backgroundColor: isVisible[field] ? 'green' : '',
-          color: isVisible[field] ? 'white' : '',
-        }}
-      >
-        {isVisible[field] ? 'Done' : 'Edit'}
-      </button>
-    );
-  }
-
   return (
     <div>
       <h2>Educational Information</h2>
       <div className="educational__details__container">
-        <div className="educational__item__container">
-          <p className="educational__company__name">
-            <strong>School Name:</strong> {formData.schoolName}
-          </p>
-          <input
-            type="text"
-            className="educational__input"
-            placeholder={formData.schoolName}
-            onChange={(e) =>
-              setFormData((prev) => ({ ...prev, schoolName: e.target.value }))
-            }
-            hidden={!isVisible['schoolName']}
-          />
-          <Button field={'schoolName'} />
-        </div>
-
-        <div className="educational__item__container">
-          <p className="educational__position__title">
-            <strong>Field of Study:</strong> {formData.fieldOfStudy}
-          </p>
-          <input
-            type="text"
-            className="educational__input"
-            placeholder={formData.fieldOfStudy}
-            onChange={(e) =>
-              setFormData((prev) => ({
-                ...prev,
-                fieldOfStudy: e.target.value,
-              }))
-            }
-            hidden={!isVisible['fieldOfStudy']}
-          />
-          <Button field={'fieldOfStudy'} />
-        </div>
-
-        <div className="educational__item__container">
-          <p className="educational__main__responsibilities">
-            <strong>Graduation Year: </strong>
-            {formData.graduationYear}
-          </p>
-          <input
-            type="text"
-            className="educational__input"
-            placeholder={formData.graduationYear}
-            onChange={(e) =>
-              setFormData((prev) => ({
-                ...prev,
-                graduationYear: e.target.value,
-              }))
-            }
-            hidden={!isVisible['graduationYear']}
-          />
-          <Button field={'graduationYear'} />
-        </div>
+      {Object.keys(formData).map((field) => (
+          <div className="educational__item__container" key={field}>
+            <p className={`educational__${field}`}>
+              <strong>{`${field.charAt(0).toUpperCase() + field.slice(1)}:`}</strong>{' '}
+              {formData[field]}
+            </p>
+            <input
+              type="text"
+              className="educational__input"
+              placeholder={formData[field]}
+              value={formData[field]}
+              onChange={(e) =>
+                setFormData((prev) => ({
+                  ...prev,
+                  [field]: e.target.value,
+                }))
+              }
+              hidden={!isVisible[field]}
+            />
+            <button
+              onClick={() => handleEditButtonClick(field)}
+              style={{
+                backgroundColor: isVisible[field] ? 'green' : '',
+                color: isVisible[field] ? 'white' : '',
+              }}
+            >
+              {isVisible[field] ? 'Done' : 'Edit'}
+            </button>
+          </div>
+        ))}
       </div>
     </div>
   );
