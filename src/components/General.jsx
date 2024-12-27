@@ -1,11 +1,14 @@
+/* eslint-disable react/prop-types */
 import { useState } from 'react';
 import './General.css';
 
 export default function General() {
-  const [name, setName] = useState('Tony Pizza');
-  const [email, setEmail] = useState('tony@gmail.com');
-  const [phone, setPhone] = useState('000-111-2222');
-  const [website, setWebsite] = useState('github.com/tony');
+  const [formData, setFormData] = useState({
+    name: 'Jane Smith',
+    email: 'jane@gmail.com',
+    phone: '000-000-0000',
+    website: 'github.com/jane',
+  });
 
   const [isVisible, setIsVisible] = useState({
     name: false,
@@ -15,13 +18,26 @@ export default function General() {
   });
 
   function handleEditButtonClick(field) {
+    console.log('running handleEditButtonClick, field', field);
     setIsVisible((prevState) => ({
       ...prevState,
       [field]: !prevState[field],
     }));
   }
 
-  
+  function Button({ field }) {
+    return (
+      <button
+        onClick={() => handleEditButtonClick(field)}
+        style={{
+          backgroundColor: isVisible[field] ? 'green' : '',
+          color: isVisible[field] ? 'white' : '',
+        }}
+      >
+        {isVisible['name'] ? 'Done' : 'Edit'}
+      </button>
+    );
+  }
 
   return (
     <div>
@@ -29,56 +45,47 @@ export default function General() {
       <div className="general__details__container">
         <div className="general__item__container">
           <p className="general__name">
-            <strong>Name:</strong> {name}
+            <strong>Name:</strong> {formData.name}
           </p>
           <input
             type="text"
             className="general__input"
-            placeholder={name}
-            onChange={(e) => setName((prevName) => e.target.value)}
+            placeholder={formData.name}
+            onChange={(e) =>
+              setFormData((prev) => ({ ...prev, name: e.target.value }))
+            }
             hidden={!isVisible['name']}
           />
-          <button
-            onClick={() => handleEditButtonClick('name')}
-            style={{
-              backgroundColor: isVisible['name'] ? 'green' : '',
-              color: isVisible['name'] ? 'white' : '',
-            }}
-          >
-            {isVisible['name'] ? 'Done' : 'Edit'}
-          </button>
+          <Button field={'name'} />
         </div>
+
         <div className="general__item__container">
           <p className="general__email">
-            <strong>Email:</strong> {email}
+            <strong>Email:</strong> {formData.email}
           </p>
           <input
             type="text"
             className="general__input"
-            placeholder={email}
-            onChange={(e) => setEmail((prevEmail) => e.target.value)}
+            placeholder={formData.email}
+            onChange={(e) =>
+              setFormData((prev) => ({ ...prev, email: e.target.value }))
+            }
             hidden={!isVisible['email']}
           />
-          <button
-            onClick={() => handleEditButtonClick('email')}
-            style={{
-              backgroundColor: isVisible['email'] ? 'green' : '',
-              color: isVisible['email'] ? 'white' : '',
-            }}
-          >
-            {isVisible['email'] ? 'Done' : 'Edit'}
-          </button>
+          <Button field={'email'} />
         </div>
         <div className="general__item__container">
           <p className="general__phone">
             <strong>Phone: </strong>
-            {phone}
+            {formData.phone}
           </p>
           <input
             type="text"
             className="general__input"
-            placeholder={phone}
-            onChange={(e) => setPhone((prevPhone) => e.target.value)}
+            placeholder={formData.phone}
+            onChange={(e) =>
+              setFormData((prev) => ({ ...prev, phone: e.target.value }))
+            }
             hidden={!isVisible['phone']}
           />
           <button
@@ -94,13 +101,15 @@ export default function General() {
         <div className="general__item__container">
           <p className="general__website">
             <strong>Website: </strong>
-            {website}
+            {formData.website}
           </p>
           <input
             type="text"
             className="general__input"
-            placeholder={website}
-            onChange={(e) => setWebsite((prevWebsite) => e.target.value)}
+            placeholder={formData.website}
+            onChange={(e) =>
+              setFormData((prev) => ({ ...prev, website: e.target.value }))
+            }
             hidden={!isVisible['website']}
           />
           <button
