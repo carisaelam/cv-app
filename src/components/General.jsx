@@ -30,14 +30,12 @@ export default function General() {
     setWebsite((prevWebsite) => newWebsite);
   }
 
-  function handleNameEditButtonClick() {
-    console.log('running handleEditNameButtonClick');
-    setNameIsVisible(!nameIsVisible);
-  }
-
-  function handleEmailEditButtonClick() {
-    console.log('running handleEditEmailButtonClick');
-    setEmailIsVisible(!emailIsVisible);
+  function handleEditButtonClick(field) {
+    if (field === 'name') {
+      setNameIsVisible(!nameIsVisible);
+    } else if (field === 'email') {
+      setEmailIsVisible(!emailIsVisible);
+    }
   }
 
   return (
@@ -56,7 +54,7 @@ export default function General() {
             hidden={!nameIsVisible}
           />
           <button
-            onClick={handleNameEditButtonClick}
+            onClick={() => handleEditButtonClick('name')}
             style={{
               backgroundColor: nameIsVisible ? 'green' : '',
               color: nameIsVisible ? 'white' : '',
@@ -77,7 +75,7 @@ export default function General() {
             hidden={!emailIsVisible}
           />
           <button
-            onClick={handleEmailEditButtonClick}
+            onClick={() => handleEditButtonClick('email')}
             style={{
               backgroundColor: emailIsVisible ? 'green' : '',
               color: emailIsVisible ? 'white' : '',
