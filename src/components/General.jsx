@@ -7,42 +7,21 @@ export default function General() {
   const [phone, setPhone] = useState('000-111-2222');
   const [website, setWebsite] = useState('github.com/tony');
 
-  const [nameIsVisible, setNameIsVisible] = useState(false);
-  const [emailIsVisible, setEmailIsVisible] = useState(false);
-  const [phoneIsVisible, setPhoneIsVisible] = useState(false);
-  const [websiteIsVisible, setWebsiteIsVisible] = useState(false);
-
-  function editName(newName) {
-    console.log('running editName with: ', newName);
-    setName((prevName) => newName);
-  }
-
-  function editEmail(newEmail) {
-    console.log('running editEmail');
-    setEmail((prevEmail) => newEmail);
-  }
-
-  function editPhone(newPhone) {
-    console.log('running editPhone');
-    setPhone((prevPhone) => newPhone);
-  }
-
-  function editWebsite(newWebsite) {
-    console.log('running editWebsite');
-    setWebsite((prevWebsite) => newWebsite);
-  }
+  const [isVisible, setIsVisible] = useState({
+    name: false,
+    email: false,
+    phone: false,
+    website: false,
+  });
 
   function handleEditButtonClick(field) {
-    if (field === 'name') {
-      setNameIsVisible(!nameIsVisible);
-    } else if (field === 'email') {
-      setEmailIsVisible(!emailIsVisible);
-    } else if (field === 'phone') {
-      setPhoneIsVisible(!phoneIsVisible);
-    } else if (field === 'website') {
-      setWebsiteIsVisible(!websiteIsVisible);
-    }
+    setIsVisible((prevState) => ({
+      ...prevState,
+      [field]: !prevState[field],
+    }));
   }
+
+  
 
   return (
     <div>
@@ -56,17 +35,17 @@ export default function General() {
             type="text"
             className="general__input"
             placeholder={name}
-            onChange={(e) => editName(e.target.value)}
-            hidden={!nameIsVisible}
+            onChange={(e) => setName((prevName) => e.target.value)}
+            hidden={!isVisible['name']}
           />
           <button
             onClick={() => handleEditButtonClick('name')}
             style={{
-              backgroundColor: nameIsVisible ? 'green' : '',
-              color: nameIsVisible ? 'white' : '',
+              backgroundColor: isVisible['name'] ? 'green' : '',
+              color: isVisible['name'] ? 'white' : '',
             }}
           >
-            {nameIsVisible ? 'Done' : 'Edit'}
+            {isVisible['name'] ? 'Done' : 'Edit'}
           </button>
         </div>
         <div className="general__item__container">
@@ -77,17 +56,17 @@ export default function General() {
             type="text"
             className="general__input"
             placeholder={email}
-            onChange={(e) => editEmail(e.target.value)}
-            hidden={!emailIsVisible}
+            onChange={(e) => setEmail((prevEmail) => e.target.value)}
+            hidden={!isVisible['email']}
           />
           <button
             onClick={() => handleEditButtonClick('email')}
             style={{
-              backgroundColor: emailIsVisible ? 'green' : '',
-              color: emailIsVisible ? 'white' : '',
+              backgroundColor: isVisible['email'] ? 'green' : '',
+              color: isVisible['email'] ? 'white' : '',
             }}
           >
-            {emailIsVisible ? 'Done' : 'Edit'}
+            {isVisible['email'] ? 'Done' : 'Edit'}
           </button>
         </div>
         <div className="general__item__container">
@@ -99,17 +78,17 @@ export default function General() {
             type="text"
             className="general__input"
             placeholder={phone}
-            onChange={(e) => editPhone(e.target.value)}
-            hidden={!phoneIsVisible}
+            onChange={(e) => setPhone((prevPhone) => e.target.value)}
+            hidden={!isVisible['phone']}
           />
           <button
             onClick={() => handleEditButtonClick('phone')}
             style={{
-              backgroundColor: phoneIsVisible ? 'green' : '',
-              color: phoneIsVisible ? 'white' : '',
+              backgroundColor: isVisible['phone'] ? 'green' : '',
+              color: isVisible['phone'] ? 'white' : '',
             }}
           >
-            {phoneIsVisible ? 'Done' : 'Edit'}
+            {isVisible['phone'] ? 'Done' : 'Edit'}
           </button>
         </div>
         <div className="general__item__container">
@@ -121,17 +100,17 @@ export default function General() {
             type="text"
             className="general__input"
             placeholder={website}
-            onChange={(e) => editWebsite(e.target.value)}
-            hidden={!websiteIsVisible}
+            onChange={(e) => setWebsite((prevWebsite) => e.target.value)}
+            hidden={!isVisible['website']}
           />
           <button
             onClick={() => handleEditButtonClick('website')}
             style={{
-              backgroundColor: websiteIsVisible ? 'green' : '',
-              color: websiteIsVisible ? 'white' : '',
+              backgroundColor: isVisible['website'] ? 'green' : '',
+              color: isVisible['website'] ? 'white' : '',
             }}
           >
-            {websiteIsVisible ? 'Done' : 'Edit'}
+            {isVisible['website'] ? 'Done' : 'Edit'}
           </button>
         </div>
       </div>
