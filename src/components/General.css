@@ -32,6 +32,5 @@ h2 {
 }
 
 .general__input {
-  position: fixed;
-  margin: 0 auto;
+  position: absolute;
 }

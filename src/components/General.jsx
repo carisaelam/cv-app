@@ -9,6 +9,8 @@ export default function General() {
 
   const [nameIsVisible, setNameIsVisible] = useState(false);
   const [emailIsVisible, setEmailIsVisible] = useState(false);
+  const [phoneIsVisible, setPhoneIsVisible] = useState(false);
+  const [websiteIsVisible, setWebsiteIsVisible] = useState(false);
 
   function editName(newName) {
     console.log('running editName with: ', newName);
@@ -35,6 +37,10 @@ export default function General() {
       setNameIsVisible(!nameIsVisible);
     } else if (field === 'email') {
       setEmailIsVisible(!emailIsVisible);
+    } else if (field === 'phone') {
+      setPhoneIsVisible(!phoneIsVisible);
+    } else if (field === 'website') {
+      setWebsiteIsVisible(!websiteIsVisible);
     }
   }
 
@@ -89,14 +95,44 @@ export default function General() {
             <strong>Phone: </strong>
             {phone}
           </p>
-          <button onClick={() => editPhone('newPhone')}>Edit</button>
+          <input
+            type="text"
+            className="general__input"
+            placeholder={phone}
+            onChange={(e) => editPhone(e.target.value)}
+            hidden={!phoneIsVisible}
+          />
+          <button
+            onClick={() => handleEditButtonClick('phone')}
+            style={{
+              backgroundColor: phoneIsVisible ? 'green' : '',
+              color: phoneIsVisible ? 'white' : '',
+            }}
+          >
+            {phoneIsVisible ? 'Done' : 'Edit'}
+          </button>
         </div>
         <div className="general__item__container">
           <p className="general__website">
             <strong>Website: </strong>
             {website}
           </p>
-          <button onClick={() => editWebsite('newWebsite')}>Edit</button>
+          <input
+            type="text"
+            className="general__input"
+            placeholder={website}
+            onChange={(e) => editWebsite(e.target.value)}
+            hidden={!websiteIsVisible}
+          />
+          <button
+            onClick={() => handleEditButtonClick('website')}
+            style={{
+              backgroundColor: websiteIsVisible ? 'green' : '',
+              color: websiteIsVisible ? 'white' : '',
+            }}
+          >
+            {websiteIsVisible ? 'Done' : 'Edit'}
+          </button>
         </div>
       </div>
     </div>
