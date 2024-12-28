@@ -1,15 +1,8 @@
 /* eslint-disable react/prop-types */
-import { useState } from 'react';
 import './General.css';
+import { useState } from 'react';
 
-export default function General() {
-  const [formData, setFormData] = useState({
-    name: 'Jane Smith',
-    email: 'jane@gmail.com',
-    phone: '000-000-0000',
-    website: 'github.com/jane',
-  });
-
+export default function General({ formData, setFormData }) {
   const [isVisible, setIsVisible] = useState({
     name: false,
     email: false,
@@ -42,7 +35,10 @@ export default function General() {
               onChange={(e) =>
                 setFormData((prev) => ({
                   ...prev,
-                  [field]: e.target.value,
+                  general: {
+                    ...prev.general,
+                    [field]: e.target.value,
+                  },
                 }))
               }
               hidden={!isVisible[field]}

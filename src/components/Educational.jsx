@@ -2,17 +2,12 @@
 import { useState } from 'react';
 import './Educational.css';
 
-export default function Educational() {
-  const [formData, setFormData] = useState({
-    schoolName: 'UGA',
-    fieldOfStudy: 'Biology',
-    graduationYear: '2010',
-  });
-
+export default function Educational({ formData, setFormData }) {
   const [isVisible, setIsVisible] = useState({
     schoolName: false,
     fieldOfStudy: false,
-    graduationYear: false,
+    startYear: false,
+    endYear: false,
   });
 
   function handleEditButtonClick(field) {
@@ -26,7 +21,8 @@ export default function Educational() {
     let titleStrings = {
       schoolName: 'School Name: ',
       fieldOfStudy: 'Field of Study: ',
-      graduationYear: 'Graduation Year: ',
+      startYear: 'Start Year: ',
+      endYear: 'End Year: ',
     };
 
     return titleStrings[string];
@@ -49,7 +45,10 @@ export default function Educational() {
               onChange={(e) =>
                 setFormData((prev) => ({
                   ...prev,
-                  [field]: e.target.value,
+                  educational: {
+                    ...prev.educational,
+                    [field]: e.target.value,
+                  },
                 }))
               }
               hidden={!isVisible[field]}

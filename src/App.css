@@ -43,8 +43,13 @@
 
 /* My CSS */
 .body__container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+}
+
+.resume__section {
+  background-color: grey;
   display: flex;
   flex-direction: column;
-  justify-content: start;
-  align-items: start;
 }

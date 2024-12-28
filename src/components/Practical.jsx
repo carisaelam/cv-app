@@ -2,15 +2,7 @@
 import { useState } from 'react';
 import './Practical.css';
 
-export default function Practical() {
-  const [formData, setFormData] = useState({
-    companyName: 'Wal-Mart',
-    positionTitle: 'CEO',
-    mainResponsibilities: 'Running the world, Taking names',
-    startDate: 'Enter start date',
-    endDate: 'Enter end date',
-  });
-
+export default function Practical({ formData, setFormData }) {
   const [isVisible, setIsVisible] = useState({
     companyName: false,
     positionTitle: false,
@@ -49,16 +41,17 @@ export default function Practical() {
               <strong>{titleCase(field)}</strong> {formData[field]}
             </p>
             <input
-              type={
-                field === 'startDate' || field === 'endDate' ? 'date' : 'text'
-              }
+              type="text"
               className="practical__input"
               placeholder={formData[field]}
               value={formData[field]}
               onChange={(e) =>
                 setFormData((prev) => ({
                   ...prev,
-                  [field]: e.target.value,
+                  practical: {
+                    ...prev.practical,
+                    [field]: e.target.value,
+                  },
                 }))
               }
               hidden={!isVisible[field]}
