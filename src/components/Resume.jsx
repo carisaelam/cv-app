@@ -41,15 +41,15 @@ export default function Resume({ formData }) {
         <div className="practical__container">
           <div className="practical__header">
             <div>
-                <h3>
-                  {formData.practical.positionTitle}:{' '}
-                  {formData.practical.companyName}
-                </h3>
+              <h3>
+                {formData.practical.positionTitle}:{' '}
+                {formData.practical.companyName}
+              </h3>
             </div>
             <div>
-                <p>
-                  {formData.practical.startDate}–{formData.practical.endDate}
-                </p>
+              <p>
+                {formData.practical.startDate}–{formData.practical.endDate}
+              </p>
             </div>
           </div>
           <div className="practical__info">

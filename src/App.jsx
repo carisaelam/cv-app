@@ -1,5 +1,6 @@
 import './App.css';
-import { useState } from 'react';
+import { useState, useRef } from 'react';
+import html2pdf from 'html2pdf.js';
 import General from './components/General';
 import Educational from './components/Educational';
 import Practical from './components/Practical';
@@ -28,6 +29,20 @@ function App() {
     },
   });
 
+  const resumeRef = useRef();
+
+  const handleDownloadPDF = () => {
+    const element = resumeRef.current;
+    const options = {
+      filename: 'resume.pdf',
+      image: { type: 'jpeg', quality: 1 },
+      html2canvas: { scale: 2 },
+      jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
+    };
+
+    html2pdf().from(element).set(options).save();
+  };
+
   return (
     <div className="body__container">
       <div className="edit__section">
@@ -39,9 +54,12 @@ function App() {
         />
         <Practical formData={formData.practical} setFormData={setFormData} />
       </div>
-      <div className="resume__section">
+
+      <div className="resume__section" ref={resumeRef}>
         <Resume formData={formData} />
       </div>
+
+      <button onClick={handleDownloadPDF}>Download PDF</button>
     </div>
   );
 }
