@@ -1,3 +1,7 @@
+.resume__section {
+  padding: 1rem;
+}
+
 .header__container {
   justify-content: center;
   display: flex;
