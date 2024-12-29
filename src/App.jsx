@@ -9,26 +9,26 @@ import Resume from './components/Resume';
 function App() {
   const [formData, setFormData] = useState({
     general: {
-      name: 'Jane Smith',
-      email: 'jane@gmail.com',
+      name: 'Example Name',
+      email: 'example@gmail.com',
       phone: '000-000-0000',
-      website: 'github.com/jane',
+      website: 'github.com/example',
     },
     educational: [
       {
-        schoolName: 'UGA',
-        fieldOfStudy: 'Biology',
-        startYear: '2010',
-        endYear: 'Present',
+        schoolName: '',
+        fieldOfStudy: '',
+        startYear: '',
+        endYear: '',
       },
     ],
     practical: [
       {
-        companyName: 'Wal-Mart',
-        positionTitle: 'CEO',
-        mainResponsibilities: 'Running the world, Taking names',
-        startDate: 'Enter start date',
-        endDate: 'Enter end date',
+        companyName: '',
+        positionTitle: '',
+        mainResponsibilities: '',
+        startDate: '',
+        endDate: '',
       },
     ],
   });
@@ -79,13 +79,13 @@ function App() {
   return (
     <div className="body__container">
       <div className="edit__section">
-        <h1>🧱 Builder</h1>
+        <h1>🧱 Resume Builder</h1>
         <General formData={formData.general} setFormData={setFormData} />
 
         <div className="education__header__section">
           <h2>Educational Information</h2>
           <div>
-            <button onClick={addEducation}>Add</button>
+            <button onClick={addEducation}>➕</button>
           </div>
         </div>
         {formData.educational.map((education, i) => (
@@ -98,9 +98,9 @@ function App() {
         ))}
      
         <div className="practical__header__section">
-          <h2>Practical Information</h2>
+          <h2>Work Experience</h2>
           <div>
-            <button onClick={addPractical}>Add</button>
+            <button onClick={addPractical}>➕</button>
           </div>
         </div>
         {formData.practical.map((practical, i) => (

@@ -25,24 +25,33 @@
   flex-direction: column;
 }
 
-.education__header__section, .practical__header__section {
+.education__header__section,
+.practical__header__section {
   display: flex;
   justify-content: space-between;
+  margin-top: 2rem;
 }
 
-.education__header__section div, .practical__header__section div {
+.education__header__section div,
+.practical__header__section div {
   display: flex;
   align-items: center;
   justify-content: center;
   padding-right: 1rem;
 }
 
-.education__header__section button, .practical__header__section button {
-  padding: 0.5rem 1rem;
+.education__header__section button,
+.practical__header__section button {
+  padding: 0 0.5rem;
   margin: 0;
+  background-color: rgb(10, 158, 40);
+  font-size: 1.5rem;
+  cursor: pointer;
+  text-align: center;
 }
 
-.education__header__section button p, .practical__header__section button p {
+.education__header__section button p,
+.practical__header__section button p {
   margin: 0;
   padding: 0;
 }
