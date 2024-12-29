@@ -26,7 +26,8 @@ function App() {
       {
         companyName: 'Company',
         positionTitle: 'Position',
-        mainResponsibilities: 'Description of main job responsibilities, achievements, awards, etc. ',
+        mainResponsibilities:
+          'Description of main job responsibilities, achievements, awards, etc. ',
         startDate: 'Start',
         endDate: 'End',
       },
@@ -96,7 +97,7 @@ function App() {
             index={i}
           />
         ))}
-     
+
         <div className="practical__header__section">
           <h2>Work Experience</h2>
           <div>
@@ -111,14 +112,12 @@ function App() {
             index={i}
           />
         ))}
-
+        <button className='download__button' onClick={handleDownloadPDF}>Download PDF</button>
       </div>
 
       <div className="resume__section" ref={resumeRef}>
         <Resume formData={formData} />
       </div>
-
-      <button onClick={handleDownloadPDF}>Download PDF</button>
     </div>
   );
 }
