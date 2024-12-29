@@ -84,10 +84,10 @@ function App() {
         <General formData={formData.general} setFormData={setFormData} />
 
         <div className="education__header__section">
-          <h2>Educational Information</h2>
           <div>
             <button onClick={addEducation}>➕</button>
           </div>
+          <h2>Educational Information</h2>
         </div>
         {formData.educational.map((education, i) => (
           <Educational
@@ -99,10 +99,10 @@ function App() {
         ))}
 
         <div className="practical__header__section">
-          <h2>Work Experience</h2>
           <div>
             <button onClick={addPractical}>➕</button>
           </div>
+          <h2>Work Experience</h2>
         </div>
         {formData.practical.map((practical, i) => (
           <Practical
