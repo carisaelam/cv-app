@@ -12,6 +12,7 @@ h2 {
   gap: 0.5rem;
   border-radius: 0.5rem;
   max-width: 30rem;
+  margin-bottom: 1rem;
 }
 
 .practical__details__container p {

@@ -2,7 +2,7 @@
 import { useState } from 'react';
 import './Practical.css';
 
-export default function Practical({ formData, setFormData }) {
+export default function Practical({ formData, setFormData, index }) {
   const [isVisible, setIsVisible] = useState({
     companyName: false,
     positionTitle: false,
@@ -31,9 +31,19 @@ export default function Practical({ formData, setFormData }) {
     return titleStrings[string];
   }
 
+  function handleChange(field, value) {
+    setFormData((prev) => {
+      const updatedPractical = [...prev.practical];
+      updatedPractical[index][field] = value;
+      return {
+        ...prev,
+        practical: updatedPractical,
+      };
+    });
+  }
+
   return (
     <div>
-      <h2>Practical Information</h2>
       <div className="practical__details__container">
         {Object.keys(formData).map((field) => (
           <div className="practical__item__container" key={field}>
@@ -45,15 +55,7 @@ export default function Practical({ formData, setFormData }) {
               className="practical__input"
               placeholder={formData[field]}
               value={formData[field]}
-              onChange={(e) =>
-                setFormData((prev) => ({
-                  ...prev,
-                  practical: {
-                    ...prev.practical,
-                    [field]: e.target.value,
-                  },
-                }))
-              }
+              onChange={(e) => handleChange(field, e.target.value)}
               hidden={!isVisible[field]}
             />
             <button

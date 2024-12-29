@@ -22,13 +22,15 @@ function App() {
         endYear: 'Present',
       },
     ],
-    practical: {
-      companyName: 'Wal-Mart',
-      positionTitle: 'CEO',
-      mainResponsibilities: 'Running the world, Taking names',
-      startDate: 'Enter start date',
-      endDate: 'Enter end date',
-    },
+    practical: [
+      {
+        companyName: 'Wal-Mart',
+        positionTitle: 'CEO',
+        mainResponsibilities: 'Running the world, Taking names',
+        startDate: 'Enter start date',
+        endDate: 'Enter end date',
+      },
+    ],
   });
 
   const resumeRef = useRef();
@@ -59,6 +61,21 @@ function App() {
     }));
   };
 
+  const addPractical = () => {
+    const newPractical = {
+      companyName: 'Enter company name',
+      positionTitle: 'Enter position title',
+      mainResponsibilities: 'Enter main responsibilities',
+      startDate: 'Enter start date',
+      endDate: 'Enter end date',
+    };
+
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      practical: [...prevFormData.practical, newPractical],
+    }));
+  };
+
   return (
     <div className="body__container">
       <div className="edit__section">
@@ -67,19 +84,34 @@ function App() {
 
         <div className="education__header__section">
           <h2>Educational Information</h2>
-
-          <div><button onClick={addEducation}>Add</button></div>
+          <div>
+            <button onClick={addEducation}>Add</button>
           </div>
-          {formData.educational.map((education, i) => (
-            <Educational
-              key={i}
-              formData={education}
-              setFormData={setFormData}
-              index={i}
-            />
-          ))}
+        </div>
+        {formData.educational.map((education, i) => (
+          <Educational
+            key={i}
+            formData={education}
+            setFormData={setFormData}
+            index={i}
+          />
+        ))}
+     
+        <div className="practical__header__section">
+          <h2>Practical Information</h2>
+          <div>
+            <button onClick={addPractical}>Add</button>
+          </div>
+        </div>
+        {formData.practical.map((practical, i) => (
+          <Practical
+            key={i}
+            formData={practical}
+            setFormData={setFormData}
+            index={i}
+          />
+        ))}
 
-        <Practical formData={formData.practical} setFormData={setFormData} />
       </div>
 
       <div className="resume__section" ref={resumeRef}>

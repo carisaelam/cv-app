@@ -39,24 +39,26 @@ export default function Resume({ formData }) {
       {/* Practical Information Section */}
       <div className="experience__container">
         <h2>Work Experience</h2>
-        <div className="practical__container">
-          <div className="practical__header">
-            <div>
-              <h3>
-                {formData.practical.positionTitle}:{' '}
-                {formData.practical.companyName}
-              </h3>
+
+        {formData.practical.map((practical, i) => (
+          <div className="practical__container" key={i}>
+            <div className="practical__header">
+              <div>
+                <h3>
+                  {practical.positionTitle}: {practical.companyName}
+                </h3>
+              </div>
+              <div>
+                <p>
+                  {practical.startDate}–{practical.endDate}
+                </p>
+              </div>
             </div>
-            <div>
-              <p>
-                {formData.practical.startDate}–{formData.practical.endDate}
-              </p>
+            <div className="practical__info">
+              <p>{practical.mainResponsibilities}</p>
             </div>
           </div>
-          <div className="practical__info">
-            <p>{formData.practical.mainResponsibilities}</p>
-          </div>
-        </div>
+        ))}
       </div>
     </>
   );
