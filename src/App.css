@@ -26,24 +26,24 @@
   flex-direction: column;
 }
 
-/* Print Query */
+.education__header__section {
+  display: flex;
+  justify-content: space-between;
+}
 
-@media print {
-  body * {
-    display: none;
-  }
+.education__header__section div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-right: 1rem;
+}
 
-  .resume__section {
-    display: block;
-  }
+.education__header__section button {
+  padding: 0.5rem 1rem;
+  margin: 0;
+}
 
-  .print-only button {
-    display: none;
-  }
-
-  .resume__section {
-    width: 100%;
-    margin: 0;
-    padding: 0;
-  }
+.education__header__section button p {
+  margin: 0;
+  padding: 0;
 }

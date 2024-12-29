@@ -14,12 +14,14 @@ function App() {
       phone: '000-000-0000',
       website: 'github.com/jane',
     },
-    educational: {
-      schoolName: 'UGA',
-      fieldOfStudy: 'Biology',
-      startYear: '2010',
-      endYear: 'Present',
-    },
+    educational: [
+      {
+        schoolName: 'UGA',
+        fieldOfStudy: 'Biology',
+        startYear: '2010',
+        endYear: 'Present',
+      },
+    ],
     practical: {
       companyName: 'Wal-Mart',
       positionTitle: 'CEO',
@@ -43,15 +45,40 @@ function App() {
     html2pdf().from(element).set(options).save();
   };
 
+  const addEducation = () => {
+    const newEducation = {
+      schoolName: 'Enter school name',
+      fieldOfStudy: 'Enter field of study',
+      startYear: 'Enter start year',
+      endYear: 'Enter end year',
+    };
+
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      educational: [...prevFormData.educational, newEducation],
+    }));
+  };
+
   return (
     <div className="body__container">
       <div className="edit__section">
         <h1>🧱 Builder</h1>
         <General formData={formData.general} setFormData={setFormData} />
-        <Educational
-          formData={formData.educational}
-          setFormData={setFormData}
-        />
+
+        <div className="education__header__section">
+          <h2>Educational Information</h2>
+
+          <div><button onClick={addEducation}>Add</button></div>
+          </div>
+          {formData.educational.map((education, i) => (
+            <Educational
+              key={i}
+              formData={education}
+              setFormData={setFormData}
+              index={i}
+            />
+          ))}
+
         <Practical formData={formData.practical} setFormData={setFormData} />
       </div>
 

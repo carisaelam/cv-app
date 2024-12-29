@@ -2,7 +2,9 @@
 import { useState } from 'react';
 import './Educational.css';
 
-export default function Educational({ formData, setFormData }) {
+export default function Educational({ formData, setFormData, index }) {
+  console.log('within Educational formData', formData);
+
   const [isVisible, setIsVisible] = useState({
     schoolName: false,
     fieldOfStudy: false,
@@ -28,9 +30,19 @@ export default function Educational({ formData, setFormData }) {
     return titleStrings[string];
   }
 
+  function handleChange(field, value) {
+    setFormData((prev) => {
+      const updatedEducational = [...prev.educational];
+      updatedEducational[index][field] = value;
+      return {
+        ...prev,
+        educational: updatedEducational,
+      };
+    });
+  }
+
   return (
     <div>
-      <h2>Educational Information</h2>
       <div className="educational__details__container">
         {Object.keys(formData).map((field) => (
           <div className="educational__item__container" key={field}>
@@ -42,15 +54,7 @@ export default function Educational({ formData, setFormData }) {
               className="educational__input"
               placeholder={formData[field]}
               value={formData[field]}
-              onChange={(e) =>
-                setFormData((prev) => ({
-                  ...prev,
-                  educational: {
-                    ...prev.educational,
-                    [field]: e.target.value,
-                  },
-                }))
-              }
+              onChange={(e) => handleChange(field, e.target.value)}
               hidden={!isVisible[field]}
             />
             <button

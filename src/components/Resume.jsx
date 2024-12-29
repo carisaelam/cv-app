@@ -18,21 +18,22 @@ export default function Resume({ formData }) {
       {/* Educational Information Section */}
       <div className="educational__container">
         <h2>Education</h2>
-        <div className="school__container">
-          <h3>{formData.educational.schoolName}</h3>
-          <div className="school__info">
-            <div>
-              <p className="field__of__study">
-                {formData.educational.fieldOfStudy}
-              </p>
-            </div>
-            <div>
-              <p className="graduation__years">
-                {formData.educational.startYear}– {formData.educational.endYear}
-              </p>
+
+        {formData.educational.map((education, i) => (
+          <div className="school__container" key={i}>
+            <h3>{education.schoolName}</h3>
+            <div className="school__info">
+              <div>
+                <p className="field__of__study">{education.fieldOfStudy}</p>
+              </div>
+              <div>
+                <p className="graduation__years">
+                  {education.startYear} – {education.endYear}
+                </p>
+              </div>
             </div>
           </div>
-        </div>
+        ))}
       </div>
 
       {/* Practical Information Section */}
