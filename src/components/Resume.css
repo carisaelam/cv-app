@@ -91,4 +91,5 @@
 .practical__info p {
   display: flex;
   margin: 0;
+  text-align: left;
 }

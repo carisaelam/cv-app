@@ -16,19 +16,19 @@ function App() {
     },
     educational: [
       {
-        schoolName: '',
-        fieldOfStudy: '',
-        startYear: '',
-        endYear: '',
+        schoolName: 'School',
+        fieldOfStudy: 'Field of Study',
+        startYear: 'Start',
+        endYear: 'End',
       },
     ],
     practical: [
       {
-        companyName: '',
-        positionTitle: '',
-        mainResponsibilities: '',
-        startDate: '',
-        endDate: '',
+        companyName: 'Company',
+        positionTitle: 'Position',
+        mainResponsibilities: 'Description of main job responsibilities, achievements, awards, etc. ',
+        startDate: 'Start',
+        endDate: 'End',
       },
     ],
   });
